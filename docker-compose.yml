@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  connector:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: razorpay-freshdesk-connector
+    ports:
+      - "8000:8000"
+    environment:
+      - FRESHDESK_DOMAIN=demo-merchant.freshdesk.com
+      - FRESHDESK_API_KEY=sample_freshdesk_api_key_xyz123
+      - CONNECTOR_API_KEY=rzp_agent_secret_key_987654321
+      - FRESHDESK_MOCK_MODE=true
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - RATE_LIMIT_PER_MINUTE=50
+    restart: unless-stopped
